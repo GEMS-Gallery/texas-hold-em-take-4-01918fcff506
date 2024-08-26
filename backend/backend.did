@@ -1,0 +1,23 @@
+type Result = 
+ variant {
+   err: text;
+   ok: GameState;
+ };
+type GameState = 
+ record {
+   communityCards: vec opt Card;
+   playerChips: nat;
+   playerHand: vec opt Card;
+   potSize: nat;
+ };
+type Card = 
+ record {
+   suit: text;
+   value: text;
+ };
+service : {
+  dealCards: () -> (Result);
+  getGameState: () -> (GameState) query;
+  initGame: () -> (Result);
+  performAction: (text) -> (Result);
+}
